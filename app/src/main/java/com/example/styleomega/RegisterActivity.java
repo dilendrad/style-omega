@@ -1,16 +1,23 @@
 package com.example.styleomega;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.styleomega.Model.User;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class RegisterActivity extends AppCompatActivity {
     private Button RegisterAccountButton;
@@ -39,11 +46,92 @@ public class RegisterActivity extends AppCompatActivity {
         RegisterAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                String fName = firstName.getText().toString();
+                String lName = lastName.getText().toString();
+                String phone = phoneNumber.getText().toString();
+                String pass = password.getText().toString();
+
+
+                if (TextUtils.isEmpty(fName)) {
+
+                    Toast.makeText(RegisterActivity.this, "Enter Your First Name", Toast.LENGTH_SHORT).show();
+                }
+                else if (TextUtils.isEmpty(lName)) {
+
+                    Toast.makeText(RegisterActivity.this, "Enter Your Last Name", Toast.LENGTH_SHORT).show();
+                }
+                else if (TextUtils.isEmpty(phone)) {
+
+                    Toast.makeText(RegisterActivity.this, "Enter Your Phone Number", Toast.LENGTH_SHORT).show();
+                }
+
+                else if (TextUtils.isEmpty(pass)) {
+
+                    Toast.makeText(RegisterActivity.this, "Enter a Password", Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+                    progressDialog.setTitle("Register Account");
+                    progressDialog.setMessage("Creating An Account");
+                    progressDialog.setCanceledOnTouchOutside(false);
+                    progressDialog.show();
+
+                }
+
+                Validations(phone);
+
+
                 User user=new User(firstName.getText().toString().trim(),lastName.getText().toString().trim(),phoneNumber.getText().toString().trim(),password.getText().toString().trim());
 
                 firebaseDBref.child(phoneNumber.getText().toString()).setValue(user);
 
             }
         });
+
+    }
+
+    public void Validations (final String phone) {
+
+        final DatabaseReference firebaseDBref;
+        firebaseDBref = FirebaseDatabase.getInstance().getReference();
+
+        firebaseDBref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.child("User").child(phone).exists()) {
+
+                    User user = dataSnapshot.child("User").child(phone).getValue(User.class);
+
+                    if(user.getPhoneNumber().equals(phone)) {
+
+                            Toast.makeText(RegisterActivity.this, "This Phone Number Already Exists", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+
+                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                            startActivity(intent);
+
+
+                        }
+                    }
+
+                else{
+
+                    Toast.makeText(RegisterActivity.this, "You Have Successfully Created An Account", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+
+                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 }

@@ -19,10 +19,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class LoginActivity extends AppCompatActivity {
+public class Login2Activity extends AppCompatActivity {
 
-    private Button LoginButton;
-    private EditText firstName, lastName, phoneNumber, password;
+    private Button adminLoginButton;
+    private EditText phoneNumber, password;
     private ProgressDialog progressDialog;
 
     private DatabaseReference firebaseDBref;
@@ -30,38 +30,38 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login2);
 
         firebaseDBref = FirebaseDatabase.getInstance().getReference().child("User");
 
 
-        LoginButton = (Button) findViewById(R.id.login_button);
-        phoneNumber = (EditText) findViewById(R.id.login_phoneNumber);
-        password = (EditText) findViewById(R.id.login_password);
+        adminLoginButton = (Button) findViewById(R.id.main_login2_button);
+        phoneNumber = (EditText) findViewById(R.id.login_adminLogin_phone);
+        password = (EditText) findViewById(R.id.login_adminLogin_password);
 
         progressDialog = new ProgressDialog(this); //Login Process
 
-        LoginButton.setOnClickListener(new View.OnClickListener() {
+        adminLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                loginUser();
+                adminLoginUser();
 
             }
         });
     }
 
-    public void loginUser() {
+    public void adminLoginUser() {
 
         String phone = phoneNumber.getText().toString();
         String pass = password.getText().toString();
 
         if (TextUtils.isEmpty(phone)) {
 
-            Toast.makeText(LoginActivity.this, "Enter Your Phone Number", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Login2Activity.this, "Enter Your Phone Number", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(pass)) {
 
-            Toast.makeText(LoginActivity.this, "Enter Your Password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Login2Activity.this, "Enter Your Password", Toast.LENGTH_SHORT).show();
         } else {
 
             progressDialog.setTitle("Login Account");
@@ -90,10 +90,10 @@ public class LoginActivity extends AppCompatActivity {
 
                         if(user.getPassword().equals(pass)) {
 
-                            Toast.makeText(LoginActivity.this, "Successfully Logged In", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login2Activity.this, "Successfully Logged In", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
 
-                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                            Intent intent = new Intent(Login2Activity.this, AdminHomeActivity.class);
                             startActivity(intent);
 
 
@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 else{
 
-                    Toast.makeText(LoginActivity.this, "Invalid Login Credentials", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login2Activity.this, "Invalid Login Credentials", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
                 }
             }
