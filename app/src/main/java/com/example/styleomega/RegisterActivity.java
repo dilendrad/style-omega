@@ -34,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
         phoneNumber = (EditText) findViewById(R.id.register_phoneNumber);
         password = (EditText) findViewById(R.id.register_password);
 
-        progressDialog = new ProgressDialog(this);
+        progressDialog = new ProgressDialog(this); //Registration Process
 
         RegisterAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
