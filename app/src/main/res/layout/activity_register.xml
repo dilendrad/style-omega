@@ -1,88 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.rey.material.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Register">
+    android:background="@drawable/background2"
+    tools:context=".RegisterActivity">
+
+    <ImageView
+
+        android:id="@+id/register_appLogo"
+        android:layout_width="347dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:src="@drawable/logo"
+
+        />
 
     <EditText
-        android:id="@+id/firstnameTextField"
-        android:layout_width="wrap_content"
+
+        android:id="@+id/register_fName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_below="@+id/register_appLogo"
+        android:background="@drawable/inputs_design"
+        android:padding="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="25dp"
         android:hint="First Name"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="125dp" />
+        android:inputType="text"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        />
 
     <EditText
-        android:id="@+id/lastnameTextfield"
-        android:layout_width="wrap_content"
+
+        android:id="@+id/register_lastName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_below="@+id/register_fName"
+        android:background="@drawable/inputs_design"
+        android:padding="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="50dp"
         android:hint="Last Name"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="197dp" />
+        android:inputType="text"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        />
 
     <EditText
-        android:id="@+id/addressTextField"
-        android:layout_width="wrap_content"
+
+        android:id="@+id/register_phoneNumber"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Address"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="266dp" />
+        android:layout_below="@+id/register_lastName"
+        android:background="@drawable/inputs_design"
+        android:padding="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="50dp"
+        android:hint="Phone Number"
+        android:inputType="text"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textSize="17dp"
+        android:textStyle="bold"
+
+        />
 
     <EditText
-        android:id="@+id/emailRegisterTextField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Email "
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="334dp" />
 
-    <EditText
-        android:id="@+id/passwordRegisterTextField"
-        android:layout_width="wrap_content"
+        android:id="@+id/register_password"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_below="@+id/register_phoneNumber"
+        android:background="@drawable/inputs_design"
+        android:padding="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="50dp"
         android:hint="Password"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="406dp" />
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textSize="17dp"
+        android:textStyle="bold"
 
-    <EditText
-        android:id="@+id/confirmPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Confirm Password"
-        android:inputType="textPassword"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="472dp" />
+
+        />
 
     <Button
-        android:id="@+id/createAnAccountButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create An Account"
-        tools:layout_editor_absoluteX="121dp"
-        tools:layout_editor_absoluteY="553dp" />
 
-    <TextView
-        android:id="@+id/registerViewLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/register_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/register_phoneNumber"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/buttons"
+        android:padding="17dp"
         android:text="Register"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteX="137dp"
-        tools:layout_editor_absoluteY="48dp" />
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="10sp"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        />
+
+</com.rey.material.widget.RelativeLayout>

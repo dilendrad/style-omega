@@ -1,55 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background2"
     tools:context=".LoginActivity">
 
-    <EditText
-        android:id="@+id/emailLoginTextfield"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="239dp" />
+    <ImageView
+
+        android:id="@+id/login_appLogo"
+        android:layout_width="347dp"
+        android:layout_height="158dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/logo"
+
+        />
 
     <EditText
-        android:id="@+id/passwordLoginTextfield"
-        android:layout_width="wrap_content"
+
+        android:id="@+id/login_phoneNumber"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_below="@+id/login_appLogo"
+        android:background="@drawable/inputs_design"
+        android:padding="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:hint="Phone Number"
+        android:inputType="text"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textSize="17dp"
+        android:textStyle="bold"
+
+
+
+        />
+
+    <EditText
+
+        android:id="@+id/login_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_phoneNumber"
+        android:background="@drawable/inputs_design"
+        android:padding="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="6dp"
         android:hint="Password"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="343dp" />
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textSize="17dp"
+        android:textStyle="bold"
 
-    <Button
-        android:id="@+id/loginButton"
+
+        />
+
+    <LinearLayout
+
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/login_password"
+        android:layout_marginTop="5dp"
+        >
+
+
+
+    <!--<com.rey.material.widget.CheckBox
+        android:id="@+id/remember_me"
+        style="@style/Material.Drawable.CheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        tools:layout_editor_absoluteX="159dp"
-        tools:layout_editor_absoluteY="437dp" />
+        android:text="Remember Me"
+        android:layout_below="@+id/login_password"
+        android:textColor="@color/colorPrimary"
+        app:cbd_strokeColor="@color/colorPrimary"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="17dp"
 
-    <Button
-        android:id="@+id/registerButton"
+        />-->
+
+    <!--<com.rey.material.widget.TextView
+        android:id="@+id/forget_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="503dp" />
+        android:text="Forget Password"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="110dp"
 
-    <TextView
-        android:id="@+id/LoginViewLabel"
-        android:layout_width="105dp"
-        android:layout_height="74dp"
+        />-->
+
+
+
+    </LinearLayout>
+
+    <Button
+
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear_layout"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="74dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/buttons"
+        android:padding="17dp"
         android:text="Login"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteX="153dp"
-        tools:layout_editor_absoluteY="64dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="10sp"
+
+        />
+
+
+</RelativeLayout>
