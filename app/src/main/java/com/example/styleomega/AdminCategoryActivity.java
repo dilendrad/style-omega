@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 public class AdminCategoryActivity extends AppCompatActivity {
 
+    //Initializing Variables
     private ImageView man, woman, boy, girl, bag, watches;
 
     @Override
