@@ -49,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 String fName = firstName.getText().toString();
                 String lName = lastName.getText().toString();
-                String phone = phoneNumber.getText().toString();
+               final String phone = phoneNumber.getText().toString();
                 String pass = password.getText().toString();
 
 
@@ -77,14 +77,14 @@ public class RegisterActivity extends AppCompatActivity {
                     progressDialog.setCanceledOnTouchOutside(false);
                     progressDialog.show();
 
+                    Validations(phone);
+
                 }
 
-                Validations(phone);
 
 
-                User user=new User(firstName.getText().toString().trim(),lastName.getText().toString().trim(),phoneNumber.getText().toString().trim(),password.getText().toString().trim());
 
-                firebaseDBref.child(phoneNumber.getText().toString()).setValue(user);
+
 
             }
         });
@@ -94,35 +94,33 @@ public class RegisterActivity extends AppCompatActivity {
     public void Validations (final String phone) {
 
         final DatabaseReference firebaseDBref;
-        firebaseDBref = FirebaseDatabase.getInstance().getReference();
+        firebaseDBref = FirebaseDatabase.getInstance().getReference().child("User");
 
         firebaseDBref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                if(dataSnapshot.child("User").child(phone).exists()) {
+                if(!dataSnapshot.child(phone).exists()) {
 
-                    User user = dataSnapshot.child("User").child(phone).getValue(User.class);
+                    User user=new User(firstName.getText().toString().trim(),lastName.getText().toString().trim(),phoneNumber.getText().toString().trim(),password.getText().toString().trim());
 
-                    if(user.getPhoneNumber().equals(phone)) {
-
-                            Toast.makeText(RegisterActivity.this, "This Phone Number Already Exists", Toast.LENGTH_SHORT).show();
-                            progressDialog.dismiss();
-
-                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                            startActivity(intent);
-
-
-                        }
-                    }
-
-                else{
+                    firebaseDBref.child(phoneNumber.getText().toString()).setValue(user);
 
                     Toast.makeText(RegisterActivity.this, "You Have Successfully Created An Account", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
 
-                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
+                    }
+
+                else{
+
+                    Toast.makeText(RegisterActivity.this, "This Phone Number Already Exists", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+
+                    Intent intent = new Intent(RegisterActivity.this, RegisterActivity.class);
+                    startActivity(intent);
+
                 }
             }
 

@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.styleomega.Model.User;
+import com.example.styleomega.Model.Admin;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +32,7 @@ public class Login2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
 
-        firebaseDBref = FirebaseDatabase.getInstance().getReference().child("User");
+        firebaseDBref = FirebaseDatabase.getInstance().getReference().child("Admin");
 
 
         adminLoginButton = (Button) findViewById(R.id.main_login2_button);
@@ -82,9 +82,9 @@ public class Login2Activity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                if(dataSnapshot.child("User").child(phone).exists()) {
+                if(dataSnapshot.child("Admin").child(phone).exists()) {
 
-                    User user = dataSnapshot.child("User").child(phone).getValue(User.class);
+                    Admin user = dataSnapshot.child("Admin").child(phone).getValue(Admin.class);
 
                     if(user.getPhoneNumber().equals(phone)) {
 
@@ -93,7 +93,7 @@ public class Login2Activity extends AppCompatActivity {
                             Toast.makeText(Login2Activity.this, "Successfully Logged In", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
 
-                            Intent intent = new Intent(Login2Activity.this, AdminHomeActivity.class);
+                            Intent intent = new Intent(Login2Activity.this, AdminCategoryActivity.class);
                             startActivity(intent);
 
 
@@ -113,6 +113,8 @@ public class Login2Activity extends AppCompatActivity {
 
             }
         });
+
+
 
 
     }
