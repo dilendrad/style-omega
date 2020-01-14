@@ -38,9 +38,10 @@
         android:textStyle="bold"
         />
 
+
     <EditText
 
-        android:id="@+id/add_product_id"
+        android:id="@+id/add_product_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/add_product_name"
@@ -48,45 +49,7 @@
         android:padding="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="20dp"
-        android:hint="Product ID"
-        android:inputType="text"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textSize="17dp"
-        android:textStyle="bold"
-        />
-
-    <EditText
-
-        android:id="@+id/add_image_url"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/add_product_id"
-        android:background="@drawable/inputs_design"
-        android:padding="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="20dp"
-        android:hint="Image URL"
-        android:inputType="text"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textSize="17dp"
-        android:textStyle="bold"
-        />
-
-    <EditText
-
-        android:id="@+id/add_product_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/add_image_url"
-        android:background="@drawable/inputs_design"
-        android:padding="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:hint="Description"
         android:inputType="text"
         android:textColor="@color/colorPrimary"
@@ -106,7 +69,7 @@
         android:padding="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:hint="Price"
         android:inputType="numberDecimal"
         android:textColor="@color/colorPrimary"
@@ -127,7 +90,7 @@
         android:padding="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:hint="Quantity"
         android:inputType="number"
         android:textColor="@color/colorPrimary"
