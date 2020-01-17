@@ -4,7 +4,11 @@ import com.example.styleomega.Model.User;
 
 public class Prevalent {
 
-    private static User onlineUsers;
+    public static User onlineUsers;
+
+    public static final String verifiedPhoneNumber = "phoneNumber";
+    public static final String password = "password";
+
 
 
 }
