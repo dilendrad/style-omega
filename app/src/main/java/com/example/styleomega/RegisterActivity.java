@@ -49,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 String fName = firstName.getText().toString();
                 String lName = lastName.getText().toString();
-               final String phone = phoneNumber.getText().toString();
+                final String phone = phoneNumber.getText().toString();
                 String pass = password.getText().toString();
 
 
@@ -102,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(!dataSnapshot.child(phone).exists()) {
 
-                    User user=new User(firstName.getText().toString().trim(),lastName.getText().toString().trim(),phoneNumber.getText().toString().trim(),password.getText().toString().trim());
+                    User user = new User(firstName.getText().toString().trim(),lastName.getText().toString().trim(),phoneNumber.getText().toString().trim(),password.getText().toString().trim());
 
                     firebaseDBref.child(phoneNumber.getText().toString()).setValue(user);
 

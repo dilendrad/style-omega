@@ -59,7 +59,7 @@ public class ProductAddingActivity extends AppCompatActivity {
         addProductButton = (Button) findViewById(R.id.add_item_button);
         inputProductImage = (ImageView) findViewById(R.id.select_product_image);
         inputProductName = (EditText) findViewById(R.id.add_product_name);
-        inputDescription = (EditText) findViewById(R.id.add_product_price);
+        inputDescription = (EditText) findViewById(R.id.add_product_description);
         inputPrice = (EditText) findViewById(R.id.add_product_price);
         inputQuantity = (EditText) findViewById(R.id.add_product_quantity);
         progressDialog = new ProgressDialog(this); //Login Process

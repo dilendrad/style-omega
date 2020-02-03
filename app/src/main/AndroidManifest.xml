@@ -11,7 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeMainActivity"></activity>
+        <activity android:name=".AdminHomepage"></activity>
+        <activity android:name=".ViewInquiries" />
+        <activity android:name=".AddInquiry" />
+        <activity android:name=".SearchForProductActivity" />
+        <activity android:name=".ConfirmFinalOrderActivity" />
+        <activity android:name=".CartActivity" />
+        <activity android:name=".ViewProductDetailsActivity" />
+        <activity android:name=".AccountSettings" />
+        <activity android:name=".HomeMainActivity" />
         <activity android:name=".AdminCategoryActivity" />
         <activity android:name=".ProductAddingActivity" />
         <activity android:name=".Login2Activity" />

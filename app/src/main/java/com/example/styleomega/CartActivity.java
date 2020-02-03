@@ -79,7 +79,7 @@ public class CartActivity extends AppCompatActivity {
                         totalAmountForProducts.setText(String.valueOf(totalPrice));
 
                         Intent intent = new Intent(CartActivity.this, ConfirmFinalOrderActivity.class);
-                        intent.putExtra("Total Price", String.valueOf(totalAmountForProducts));
+                        intent.putExtra("Total Price", String.valueOf(totalPrice));
                         startActivity(intent);
                         finish();
                     }
@@ -109,7 +109,7 @@ public class CartActivity extends AppCompatActivity {
                                 if(i == 0) {
 
                                     Intent intent = new Intent(CartActivity.this, ViewProductDetailsActivity.class);
-                                    intent.putExtra("pid", cart.getProductID());
+                                    intent.putExtra("productID", cart.getProductID());
                                     startActivity(intent);
                                 }
 

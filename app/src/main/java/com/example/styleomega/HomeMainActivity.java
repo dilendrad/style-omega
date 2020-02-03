@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -27,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.paperdb.Paper;
 
 public class HomeMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -46,6 +49,8 @@ public class HomeMainActivity extends AppCompatActivity implements NavigationVie
         setContentView(R.layout.activity_home_main);
 
         databaseProductReference = FirebaseDatabase.getInstance().getReference().child("Products");
+
+        Paper.init(this);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -90,14 +95,24 @@ public class HomeMainActivity extends AppCompatActivity implements NavigationVie
 
                 new FirebaseRecyclerAdapter<Product, ProductViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull Product product) {
+                    protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull final Product product) {
 
                         String price = Double.toString(product.getProductPrice());
 
-                        productViewHolder.viewProductName.setText("Product Name" +product.getProductName());
-                        productViewHolder.viewProductCategory.setText("Catergory" +product.getProductCategory());
+                        productViewHolder.viewProductName.setText(product.getProductName());
+                        productViewHolder.viewProductCategory.setText(product.getProductCategory());
                         productViewHolder.viewProductPrice.setText("Rs. " +price);
                         Picasso.get().load(product.getProductImageURL()).into(productViewHolder.viewProductImage);
+
+                        productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                Intent intent = new Intent(HomeMainActivity.this, ViewProductDetailsActivity.class);
+                                intent.putExtra("pid", product.getProductID());
+                                startActivity(intent);
+                            }
+                        });
 
 
                     }
@@ -119,21 +134,42 @@ public class HomeMainActivity extends AppCompatActivity implements NavigationVie
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-        switch (menuItem.getItemId()) {
+        int id = menuItem.getItemId();
 
-            case R.id.profile:
-                Toast.makeText(this, "Profile Has Been Selected", Toast.LENGTH_SHORT).show();
-                break;
+        if(id == R.id.shopping_cart) {
 
-            case R.id.contact_us:
-                Toast.makeText(this, "Contact Us Has Been Selected", Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.log_out:
-                Toast.makeText(this, "Logout Has Been Selected", Toast.LENGTH_SHORT).show();
-                break;
-
+            Intent intent = new Intent(HomeMainActivity.this, CartActivity.class);
+            startActivity(intent);
         }
-        return false;
+
+        if(id == R.id.profile) {
+
+            Intent intent = new Intent(HomeMainActivity.this, AccountSettings.class);
+            startActivity(intent);
+        }
+
+        if(id == R.id.search) {
+
+            Intent intent = new Intent(HomeMainActivity.this, SearchForProductActivity.class);
+            startActivity(intent);
+        }
+
+        if(id == R.id.inquiry) {
+
+            Intent intent = new Intent(HomeMainActivity.this, AddInquiry.class);
+            startActivity(intent);
+        }
+
+        else if (id == R.id.log_out)
+        {
+            Paper.book().destroy();
+            Intent intent = new Intent(HomeMainActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        }
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

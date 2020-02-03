@@ -93,7 +93,7 @@ public class Login2Activity extends AppCompatActivity {
                             Toast.makeText(Login2Activity.this, "Successfully Logged In", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
 
-                            Intent intent = new Intent(Login2Activity.this, AdminCategoryActivity.class);
+                            Intent intent = new Intent(Login2Activity.this, AdminHomepage.class);
                             startActivity(intent);
 
 
